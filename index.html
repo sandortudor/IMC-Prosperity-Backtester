@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Backtester</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Plotly for interactive plotting -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- PapaParse for CSV parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Interactive Backtester</h1>
+  </header>
+
+  <section id="uploadSection">
+    <label for="csvUpload" class="file-label">Upload CSV File:</label>
+    <input type="file" id="csvUpload" accept=".csv">
+  </section>
+  
+  <section id="controls" class="hidden">
+    <div class="control-group">
+      <label for="productSelect">Product:</label>
+      <select id="productSelect"></select>
+    </div>
+    <div class="control-group">
+      <label for="fastWindow">Fast MA Window:</label>
+      <input type="number" id="fastWindow" value="10" min="1" max="50">
+    </div>
+    <div class="control-group">
+      <label for="slowWindow">Slow MA Window:</label>
+      <input type="number" id="slowWindow" value="30" min="1" max="100">
+    </div>
+    <div class="control-group">
+      <label for="threshold">Threshold:</label>
+      <input type="number" id="threshold" value="20" min="0" max="200" step="1">
+    </div>
+    <div class="control-group">
+      <label for="tradeSize">Trade Size:</label>
+      <input type="number" id="tradeSize" value="5" min="1" max="20">
+    </div>
+    <div class="button-group">
+      <button id="updateButton">Update Plots</button>
+      <button id="updateSummary">Update Summary</button>
+    </div>
+  </section>
+
+  <section id="summaryPanel" class="hidden"></section>
+  <section id="tradeHistoryPanel" class="hidden"></section>
+  <section id="recommendationPanel" class="hidden"></section>
+  
+  <section id="plots" class="hidden">
+    <div id="priceChart"></div>
+    <div id="pnlChart"></div>
+    <div id="rsiChart"></div>
+  </section>
+
+  <!-- Documentation Section -->
+  <section id="documentation">
+    <h2>Documentation</h2>
+    <p><strong>PnL (Profit and Loss):</strong> The cumulative profit or loss achieved by the trading strategy. It reflects the net gains or losses over time.</p>
+    <p><strong>RSI (Relative Strength Index):</strong> A momentum oscillator that measures the speed and change of price movements. Values below 30 suggest that the asset is oversold (a potential BUY signal), while values above 70 suggest it is overbought (a potential SELL signal).</p>
+    <p><strong>MA (Moving Average):</strong> The average of a security's price over a specific period. A fast MA reacts quickly to recent price changes, while a slow MA smooths out price fluctuations. Crossovers between fast and slow MAs are used as trading signals.</p>
+    <p>This interactive backtester uses a moving average crossover strategy along with RSI to generate trading recommendations. It also backtests historical trades by simulating positions and calculates the resulting profit and loss.</p>
+  </section>
+
+  <footer>
+    <p>Interactive Backtester &copy; 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
